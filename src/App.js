@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import { Language, ExitToApp, HelpOutline, Info } from '@mui/icons-material';
+import { AppBar, Toolbar, Typography, IconButton, Select, MenuItem, Tooltip } from '@mui/material';
+import { ExitToApp, HelpOutline, Info } from '@mui/icons-material';
 import Administration from './Components/Administration';
 import SystemConfiguration from './Components/SystemConfiguration';
 import WAN from './Components/WAN';
@@ -15,9 +15,14 @@ import './App.css';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('System Summary');
+  const [selectedLanguage, setSelectedLanguage] = useState('English');
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
+  };
+
+  const handleLanguageChange = (language) => {
+    setSelectedLanguage(language);
   };
 
   const renderSection = () => {
@@ -119,12 +124,20 @@ const App = () => {
             </Typography>
             <div className="flex items-center space-x-4">
               <Typography variant="body1">Cisco (admin)</Typography>
-              <IconButton>
-                <Language />
-              </IconButton>
-              <IconButton>
-                <HelpOutline />
-              </IconButton>
+              <Select
+                value={selectedLanguage}
+                onChange={(e) => handleLanguageChange(e.target.value)}
+                className="text-white"
+              >
+                <MenuItem value="English">English</MenuItem>
+                <MenuItem value="Spanish">Spanish</MenuItem>
+                {/* Add more language options as needed */}
+              </Select>
+              <Tooltip title="How can I help you">
+                <IconButton>
+                  <HelpOutline />
+                </IconButton>
+              </Tooltip>
               <IconButton>
                 <Info />
               </IconButton>
