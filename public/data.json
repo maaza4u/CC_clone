@@ -1,0 +1,223 @@
+[
+    {
+      "id": 1,
+      "systemInfo": {
+        "serialNo": "12345678",
+        "systemUpTime": "123 days",
+        "pidVid": "PID12345",
+        "lanMac": "AA:BB:CC:DD:EE:FF",
+        "wanMac": "FF:EE:DD:CC:BB:AA"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "1.0.0",
+        "firmwareMdsChecksum": "abcd1234",
+        "location": "Data Center 1",
+        "languageVersion": "1.0.0",
+        "languageMdsChecksum": "efgh5678"
+      }
+    },
+    {
+      "id": 2,
+      "systemInfo": {
+        "serialNo": "23456789",
+        "systemUpTime": "234 days",
+        "pidVid": "PID23456",
+        "lanMac": "BB:CC:DD:EE:FF:00",
+        "wanMac": "00:FF:EE:DD:CC:BB"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "2.0.0",
+        "firmwareMdsChecksum": "bcde2345",
+        "location": "Data Center 2",
+        "languageVersion": "2.0.0",
+        "languageMdsChecksum": "fghi6789"
+      }
+    },
+    {
+      "id": 3,
+      "systemInfo": {
+        "serialNo": "34567890",
+        "systemUpTime": "345 days",
+        "pidVid": "PID34567",
+        "lanMac": "CC:DD:EE:FF:00:11",
+        "wanMac": "11:00:FF:EE:DD:CC"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "3.0.0",
+        "firmwareMdsChecksum": "cdef3456",
+        "location": "Data Center 3",
+        "languageVersion": "3.0.0",
+        "languageMdsChecksum": "ghij7890"
+      }
+    },
+    {
+      "id": 4,
+      "systemInfo": {
+        "serialNo": "45678901",
+        "systemUpTime": "456 days",
+        "pidVid": "PID45678",
+        "lanMac": "DD:EE:FF:00:11:22",
+        "wanMac": "22:11:00:FF:EE:DD"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "4.0.0",
+        "firmwareMdsChecksum": "defg4567",
+        "location": "Data Center 4",
+        "languageVersion": "4.0.0",
+        "languageMdsChecksum": "hijk8901"
+      }
+    },
+    {
+      "id": 5,
+      "systemInfo": {
+        "serialNo": "56789012",
+        "systemUpTime": "567 days",
+        "pidVid": "PID56789",
+        "lanMac": "EE:FF:00:11:22:33",
+        "wanMac": "33:22:11:00:FF:EE"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "5.0.0",
+        "firmwareMdsChecksum": "efgh5678",
+        "location": "Data Center 5",
+        "languageVersion": "5.0.0",
+        "languageMdsChecksum": "ijkl9012"
+      }
+    },
+    {
+      "id": 6,
+      "systemInfo": {
+        "serialNo": "67890123",
+        "systemUpTime": "678 days",
+        "pidVid": "PID67890",
+        "lanMac": "FF:00:11:22:33:44",
+        "wanMac": "44:33:22:11:00:FF"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "6.0.0",
+        "firmwareMdsChecksum": "fghi6789",
+        "location": "Data Center 6",
+        "languageVersion": "6.0.0",
+        "languageMdsChecksum": "jklm0123"
+      }
+    },
+    {
+      "id": 7,
+      "systemInfo": {
+        "serialNo": "78901234",
+        "systemUpTime": "789 days",
+        "pidVid": "PID78901",
+        "lanMac": "00:11:22:33:44:55",
+        "wanMac": "55:44:33:22:11:00"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "7.0.0",
+        "firmwareMdsChecksum": "ghij7890",
+        "location": "Data Center 7",
+        "languageVersion": "7.0.0",
+        "languageMdsChecksum": "klmn1234"
+      }
+    },
+    {
+      "id": 8,
+      "systemInfo": {
+        "serialNo": "89012345",
+        "systemUpTime": "890 days",
+        "pidVid": "PID89012",
+        "lanMac": "11:22:33:44:55:66",
+        "wanMac": "66:55:44:33:22:11"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "8.0.0",
+        "firmwareMdsChecksum": "hijk8901",
+        "location": "Data Center 8",
+        "languageVersion": "8.0.0",
+        "languageMdsChecksum": "lmno2345"
+      }
+    },
+    {
+      "id": 9,
+      "systemInfo": {
+        "serialNo": "90123456",
+        "systemUpTime": "901 days",
+        "pidVid": "PID90123",
+        "lanMac": "22:33:44:55:66:77",
+        "wanMac": "77:66:55:44:33:22"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "9.0.0",
+        "firmwareMdsChecksum": "ijkl9012",
+        "location": "Data Center 9",
+        "languageVersion": "9.0.0",
+        "languageMdsChecksum": "mnop3456"
+      }
+    },
+    {
+      "id": 10,
+      "systemInfo": {
+        "serialNo": "01234567",
+        "systemUpTime": "12 days",
+        "pidVid": "PID01234",
+        "lanMac": "33:44:55:66:77:88",
+        "wanMac": "88:77:66:55:44:33"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "10.0.0",
+        "firmwareMdsChecksum": "jklm0123",
+        "location": "Data Center 10",
+        "languageVersion": "10.0.0",
+        "languageMdsChecksum": "nopq4567"
+      }
+    },
+    {
+      "id": 11,
+      "systemInfo": {
+        "serialNo": "11234567",
+        "systemUpTime": "112 days",
+        "pidVid": "PID11234",
+        "lanMac": "44:55:66:77:88:99",
+        "wanMac": "99:88:77:66:55:44"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "11.0.0",
+        "firmwareMdsChecksum": "klmn1234",
+        "location": "Data Center 11",
+        "languageVersion": "11.0.0",
+        "languageMdsChecksum": "opqr5678"
+      }
+    },
+    {
+      "id": 12,
+      "systemInfo": {
+        "serialNo": "21234567",
+        "systemUpTime": "212 days",
+        "pidVid": "PID21234",
+        "lanMac": "55:66:77:88:99:AA",
+        "wanMac": "AA:99:88:77:66:55"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "12.0.0",
+        "firmwareMdsChecksum": "lmno2345",
+        "location": "Data Center 12",
+        "languageVersion": "12.0.0",
+        "languageMdsChecksum": "pqrs6789"
+      }
+    },
+    {
+      "id": 13,
+      "systemInfo": {
+        "serialNo": "31234567",
+        "systemUpTime": "312 days",
+        "pidVid": "PID31234",
+        "lanMac": "66:77:88:99:AA:BB",
+        "wanMac": "BB:AA:99:88:77:66"
+      },
+      "firmwareInfo": {
+        "firmwareVersion": "13.0.0",
+        "firmwareMdsChecksum": "mnop3456",
+        "location": "Data Center 13",
+        "languageVersion": "13.0.0",
+        "languageMdsChecksum": "qrst7890"
+      }
+    }
+]  
