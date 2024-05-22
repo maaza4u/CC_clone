@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Select, MenuItem, Tooltip } from '@mui/material';
-import { ExitToApp, HelpOutline, Info } from '@mui/icons-material';
+import { AppBar, Toolbar, Typography, IconButton, Select, MenuItem, Tooltip, Fab } from '@mui/material';
+import { ExitToApp, HelpOutline, Info, Message, Settings, Build, CloudQueue, Language, Wifi, Router, Security, Lock, Shield, Equalizer,Home,Assessment } from '@mui/icons-material';
 import Administration from './Components/Administration';
 import SystemConfiguration from './Components/SystemConfiguration';
 import WAN from './Components/WAN';
@@ -9,14 +9,16 @@ import Wireless from './Components/Wireless';
 import Routing from './Components/Routing';
 import Firewall from './Components/Firewall';
 import VPN from './Components/VPN';
-import Security from './Components/Security';
+import SecurityComponent from './Components/Security';
 import QoS from './Components/Qos';
+import MessagePopup from './Components/MessagePopup'; // Import the MessagePopup component
 import './App.css';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('System Summary');
   const [selectedLanguage, setSelectedLanguage] = useState('English');
   const [systemData, setSystemData] = useState(null);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   useEffect(() => {
     fetch('/data.json')
@@ -30,6 +32,14 @@ const App = () => {
 
   const handleLanguageChange = (language) => {
     setSelectedLanguage(language);
+  };
+
+  const handleFabClick = () => {
+    setPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
   };
 
   const renderSection = () => {
@@ -51,7 +61,7 @@ const App = () => {
       case 'VPN':
         return <VPN />;
       case 'Security':
-        return <Security />;
+        return <SecurityComponent />;
       case 'QoS':
         return <QoS />;
       default:
@@ -129,25 +139,26 @@ const App = () => {
           <nav className="flex-grow">
             <ul>
               {[
-                'Getting started',
-                'Status and Statistics',
-                'Administration',
-                'System Configuration',
-                'WAN',
-                'LAN',
-                'Wireless',
-                'Routing',
-                'Firewall',
-                'VPN',
-                'Security',
-                'QoS'
+               { name: 'Getting started', icon: <Home className="mr-2" /> },
+               { name: 'Status and Statistics', icon: <Assessment className="mr-2" /> },
+                { name: 'Administration', icon: <Settings className="mr-2" /> },
+                { name: 'System Configuration', icon: <Build className="mr-2" /> },
+                { name: 'WAN', icon: <CloudQueue className="mr-2" /> },
+                { name: 'LAN', icon: <Language className="mr-2" /> },
+                { name: 'Wireless', icon: <Wifi className="mr-2" /> },
+                { name: 'Routing', icon: <Router className="mr-2" /> },
+                { name: 'Firewall', icon: <Security className="mr-2" /> },
+                { name: 'VPN', icon: <Lock className="mr-2" /> },
+                { name: 'Security', icon: <Shield className="mr-2" /> },
+                { name: 'QoS', icon: <Equalizer className="mr-2" /> },
               ].map((item) => (
                 <li
-                  key={item}
-                  className={`px-4 py-2 hover:bg-gray-700 cursor-pointer ${activeSection === item ? 'bg-gray-700' : ''}`}
-                  onClick={() => handleSectionClick(item)}
+                  key={item.name}
+                  className={`px-4 py-2 hover:bg-gray-700 cursor-pointer flex items-center ${activeSection === item.name ? 'bg-gray-700' : ''}`}
+                  onClick={() => handleSectionClick(item.name)}
                 >
-                  {item}
+                  {item.icon}
+                  {item.name}
                 </li>
               ))}
             </ul>
@@ -158,6 +169,17 @@ const App = () => {
           {renderSection()}
         </main>
       </div>
+
+      <Fab
+        color="primary"
+        aria-label="message"
+        className="fixed bottom-4 right-4"
+        onClick={handleFabClick}
+      >
+        <Message />
+      </Fab>
+
+      <MessagePopup open={popupOpen} handleClose={handleClosePopup} style={{ paddingRight: '20px' }} />
     </div>
   );
 };
