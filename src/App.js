@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Select, MenuItem, Tooltip } from '@mui/material';
 import { ExitToApp, HelpOutline, Info } from '@mui/icons-material';
 import Administration from './Components/Administration';
@@ -16,6 +16,13 @@ import './App.css';
 const App = () => {
   const [activeSection, setActiveSection] = useState('System Summary');
   const [selectedLanguage, setSelectedLanguage] = useState('English');
+  const [systemData, setSystemData] = useState(null);
+
+  useEffect(() => {
+    fetch('/data.json')
+      .then(response => response.json())
+      .then(data => setSystemData(data[0])); // Assuming you want to display the first item for simplicity
+  }, []);
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
@@ -48,6 +55,7 @@ const App = () => {
       case 'QoS':
         return <QoS />;
       default:
+        if (!systemData) return <div>Loading...</div>;
         return (
           <>
             <h1 className="text-2xl font-bold mb-4">System Summary</h1>
@@ -55,21 +63,21 @@ const App = () => {
               <div className="flex-1 mb-4">
                 <h2 className="text-xl font-semibold">System Information</h2>
                 <ul className="list-disc pl-5">
-                  <li>Serial No.: XXXXXXXX</li>
-                  <li>System Up Time: 123 days</li>
-                  <li>PID VID: XXXXXXXX</li>
-                  <li>LAN MAC: XX:XX:XX:XX:XX:XX</li>
-                  <li>WAN MAC: XX:XX:XX:XX:XX:XX</li>
+                  <li>Serial No.: {systemData.systemInfo.serialNo}</li>
+                  <li>System Up Time: {systemData.systemInfo.systemUpTime}</li>
+                  <li>PID VID: {systemData.systemInfo.pidVid}</li>
+                  <li>LAN MAC: {systemData.systemInfo.lanMac}</li>
+                  <li>WAN MAC: {systemData.systemInfo.wanMac}</li>
                 </ul>
               </div>
               <div className="flex-1">
                 <h2 className="text-xl font-semibold">Firmware Information</h2>
                 <ul className="list-disc pl-5">
-                  <li>Firmware Version: X.X.X</li>
-                  <li>Firmware MDS Checksum: XXXXXXXX</li>
-                  <li>Location: XXXXXXXX</li>
-                  <li>Language Version: X.X.X</li>
-                  <li>Language MDS Checksum: XXXXXXXX</li>
+                  <li>Firmware Version: {systemData.firmwareInfo.firmwareVersion}</li>
+                  <li>Firmware MDS Checksum: {systemData.firmwareInfo.firmwareMdsChecksum}</li>
+                  <li>Location: {systemData.firmwareInfo.location}</li>
+                  <li>Language Version: {systemData.firmwareInfo.languageVersion}</li>
+                  <li>Language MDS Checksum: {systemData.firmwareInfo.languageMdsChecksum}</li>
                 </ul>
               </div>
             </div>
