@@ -87,79 +87,77 @@ const App = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 text-white flex flex-col">
-        <nav className="flex-grow">
-          <ul>
-            {[
-              'Getting started',
-              'Status and Statistics',
-              'Administration',
-              'System Configuration',
-              'WAN',
-              'LAN',
-              'Wireless',
-              'Routing',
-              'Firewall',
-              'VPN',
-              'Security',
-              'QoS'
-            ].map((item) => (
-              <li
-                key={item}
-                className={`px-4 py-2 hover:bg-gray-700 cursor-pointer ${activeSection === item ? 'bg-gray-700' : ''}`}
-                onClick={() => handleSectionClick(item)}
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </aside>
-
-      {/* Main content */}
-      <main className="flex-grow">
-        <AppBar position="static" color="default">
-          <Toolbar className="flex justify-between">
-            <Typography variant="h6" color="inherit" className="flex items-center">
-              <img
-                src="https://www.cisco.com/c/dam/en_us/signin/branding/cisco-logo-blue.svg"
-                alt="Cisco"
-                className="h-8 mr-2"
-              />
-              RV260W-router3D2211
-            </Typography>
-            <div className="flex items-center space-x-4">
-              <Typography variant="body1">Cisco (admin)</Typography>
-              <Select
-                value={selectedLanguage}
-                onChange={(e) => handleLanguageChange(e.target.value)}
-                className="text-white"
-              >
-                <MenuItem value="English">English</MenuItem>
-                <MenuItem value="Spanish">Spanish</MenuItem>
-                {/* Add more language options as needed */}
-              </Select>
-              <Tooltip title="How can I help you">
-                <IconButton>
-                  <HelpOutline />
-                </IconButton>
-              </Tooltip>
+    <div className="h-screen bg-gray-100">
+      <AppBar position="static" color="default" className="w-full">
+        <Toolbar className="flex justify-between">
+          <Typography variant="h6" color="inherit" className="flex items-center">
+            <img
+              src="https://aurus5.com/blog/images/2017-cisco-logo-1.png"
+              alt="Cisco"
+              className="h-8 mr-2"
+            />
+            RV-router
+          </Typography>
+          <div className="flex items-center space-x-4">
+            <Typography variant="body1"> User (admin)</Typography>
+            <Select
+              value={selectedLanguage}
+              onChange={(e) => handleLanguageChange(e.target.value)}
+              className="text-white"
+            >
+              <MenuItem value="English">English</MenuItem>
+              <MenuItem value="Spanish">Spanish</MenuItem>
+              {/* Add more language options as needed */}
+            </Select>
+            <Tooltip title="How can I help you">
               <IconButton>
-                <Info />
+                <HelpOutline />
               </IconButton>
-              <IconButton>
-                <ExitToApp />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </AppBar>
+            </Tooltip>
+            <IconButton>
+              <Info />
+            </IconButton>
+            <IconButton>
+              <ExitToApp />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
 
-        <div className="p-4">
+      <div className="flex">
+        <aside className="w-64 bg-gray-800 text-white flex flex-col">
+          <nav className="flex-grow">
+            <ul>
+              {[
+                'Getting started',
+                'Status and Statistics',
+                'Administration',
+                'System Configuration',
+                'WAN',
+                'LAN',
+                'Wireless',
+                'Routing',
+                'Firewall',
+                'VPN',
+                'Security',
+                'QoS'
+              ].map((item) => (
+                <li
+                  key={item}
+                  className={`px-4 py-2 hover:bg-gray-700 cursor-pointer ${activeSection === item ? 'bg-gray-700' : ''}`}
+                  onClick={() => handleSectionClick(item)}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+
+        <main className="flex-grow p-4">
           {renderSection()}
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 };
