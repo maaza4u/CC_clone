@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, List } from '@mui/material';
 
 const Administration = () => {
   const [selectedItem, setSelectedItem] = useState(null);
