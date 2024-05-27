@@ -1,6 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Select, MenuItem, Tooltip, Fab } from '@mui/material';
-import { ExitToApp, HelpOutline, Info, Message, Settings, Build, CloudQueue, Language, Wifi, Router, Security, Lock, Shield, Equalizer,Home,Assessment } from '@mui/icons-material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Select,
+  MenuItem,
+  Tooltip
+} from '@mui/material';
+import {
+  ExitToApp,
+  HelpOutline,
+  Info,
+  Settings,
+  Build,
+  CloudQueue,
+  Language,
+  Wifi,
+  Router,
+  Security,
+  Lock,
+  Shield,
+  Equalizer,
+  Home,
+  Assessment,
+  SupportAgent,
+} from '@mui/icons-material';
 import Administration from './Components/Administration';
 import SystemConfiguration from './Components/SystemConfiguration';
 import WAN from './Components/WAN';
@@ -11,19 +36,21 @@ import Firewall from './Components/Firewall';
 import VPN from './Components/VPN';
 import SecurityComponent from './Components/Security';
 import QoS from './Components/Qos';
-import MessagePopup from './Components/MessagePopup'; // Import the MessagePopup component
+import GettingStarted from './Components/GettingStarted';
+import FloatingWindow from './FloatingWindow';
 import './App.css';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('System Summary');
   const [selectedLanguage, setSelectedLanguage] = useState('English');
-  const [systemData, setSystemData] = useState(null);
-  const [popupOpen, setPopupOpen] = useState(false);
+  const [systemData, setSystemData] = useState([]);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  
 
   useEffect(() => {
     fetch('/data.json')
-      .then(response => response.json())
-      .then(data => setSystemData(data[0])); // Assuming you want to display the first item for simplicity
+      .then((response) => response.json())
+      .then((data) => setSystemData(data));
   }, []);
 
   const handleSectionClick = (section) => {
@@ -34,16 +61,23 @@ const App = () => {
     setSelectedLanguage(language);
   };
 
-  const handleFabClick = () => {
-    setPopupOpen(true);
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
   };
 
-  const handleClosePopup = () => {
-    setPopupOpen(false);
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
+
+  const handleItemClick = (item) => {
+    console.log(item);
+    setDrawerOpen(false);
   };
 
   const renderSection = () => {
     switch (activeSection) {
+      case 'Getting started':
+        return <GettingStarted />;
       case 'Administration':
         return <Administration />;
       case 'System Configuration':
@@ -65,32 +99,37 @@ const App = () => {
       case 'QoS':
         return <QoS />;
       default:
-        if (!systemData) return <div>Loading...</div>;
+        if (systemData.length === 0) return <div>Loading...</div>;
         return (
           <>
             <h1 className="text-2xl font-bold mb-4">System Summary</h1>
-            <div className="flex space-x-4">
-              <div className="flex-1 mb-4">
-                <h2 className="text-xl font-semibold">System Information</h2>
-                <ul className="list-disc pl-5">
-                  <li>Serial No.: {systemData.systemInfo.serialNo}</li>
-                  <li>System Up Time: {systemData.systemInfo.systemUpTime}</li>
-                  <li>PID VID: {systemData.systemInfo.pidVid}</li>
-                  <li>LAN MAC: {systemData.systemInfo.lanMac}</li>
-                  <li>WAN MAC: {systemData.systemInfo.wanMac}</li>
-                </ul>
+            {systemData.map((data) => (
+              <div key={data.id} className="mb-8">
+                <div className="flex space-x-4">
+                  <div className="flex-1 mb-4">
+                    <h2 className="text-xl font-semibold">System Information</h2>
+                    <ul className="list-disc pl-5">
+                      <li>Serial No.: {data.systemInfo.serialNo}</li>
+                      <li>System Up Time: {data.systemInfo.systemUpTime}</li>
+                      <li>PID VID: {data.systemInfo.pidVid}</li>
+                      <li>LAN MAC: {data.systemInfo.lanMac}</li>
+                      <li>WAN MAC: {data.systemInfo.wanMac}</li>
+                    </ul>
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-xl font-semibold">Firmware Information</h2>
+                    <ul className="list-disc pl-5">
+                      <li>Firmware Version: {data.firmwareInfo.firmwareVersion}</li>
+                      <li>Firmware MDS Checksum: {data.firmwareInfo.firmwareMdsChecksum}</li>
+                      <li>Location: {data.firmwareInfo.location}</li>
+                      <li>Language Version: {data.firmwareInfo.languageVersion}</li>
+                      <li>Language MDS Checksum: {data.firmwareInfo.languageMdsChecksum}</li>
+                    </ul>
+                  </div>
+                </div>
+                <hr />
               </div>
-              <div className="flex-1">
-                <h2 className="text-xl font-semibold">Firmware Information</h2>
-                <ul className="list-disc pl-5">
-                  <li>Firmware Version: {systemData.firmwareInfo.firmwareVersion}</li>
-                  <li>Firmware MDS Checksum: {systemData.firmwareInfo.firmwareMdsChecksum}</li>
-                  <li>Location: {systemData.firmwareInfo.location}</li>
-                  <li>Language Version: {systemData.firmwareInfo.languageVersion}</li>
-                  <li>Language MDS Checksum: {systemData.firmwareInfo.languageMdsChecksum}</li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </>
         );
     }
@@ -139,8 +178,8 @@ const App = () => {
           <nav className="flex-grow">
             <ul>
               {[
-               { name: 'Getting started', icon: <Home className="mr-2" /> },
-               { name: 'Status and Statistics', icon: <Assessment className="mr-2" /> },
+                { name: 'Getting started', icon: <Home className="mr-2" /> },
+                { name: 'Status and Statistics', icon: <Assessment className="mr-2" /> },
                 { name: 'Administration', icon: <Settings className="mr-2" /> },
                 { name: 'System Configuration', icon: <Build className="mr-2" /> },
                 { name: 'WAN', icon: <CloudQueue className="mr-2" /> },
@@ -154,7 +193,9 @@ const App = () => {
               ].map((item) => (
                 <li
                   key={item.name}
-                  className={`px-4 py-2 hover:bg-gray-700 cursor-pointer flex items-center ${activeSection === item.name ? 'bg-gray-700' : ''}`}
+                  className={`px-4 py-2 hover:bg-gray-700 cursor-pointer flex items-center ${
+                    activeSection === item.name ? 'bg-gray-700' : ''
+                  }`}
                   onClick={() => handleSectionClick(item.name)}
                 >
                   {item.icon}
@@ -165,21 +206,33 @@ const App = () => {
           </nav>
         </aside>
 
-        <main className="flex-grow p-4">
-          {renderSection()}
-        </main>
+        <main className="flex-grow p-4">{renderSection()}</main>
       </div>
 
-      <Fab
-        color="primary"
-        aria-label="message"
-        className="fixed bottom-4 right-4"
-        onClick={handleFabClick}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          cursor: 'pointer',
+        }}
+        onClick={handleDrawerOpen}
       >
-        <Message />
-      </Fab>
-
-      <MessagePopup open={popupOpen} handleClose={handleClosePopup} style={{ paddingRight: '20px' }} />
+        <IconButton color="primary" aria-label="support">
+          <SupportAgent />
+        </IconButton>
+        <Typography variant="body1" color="primary">
+          Customer Support
+        </Typography>
+      </div>
+      <FloatingWindow
+        open={drawerOpen}
+        handleClose={handleDrawerClose}
+        items={['Item 1', 'Item 2', 'Item 3']}
+        handleItemClick={handleItemClick}
+      />
     </div>
   );
 };
