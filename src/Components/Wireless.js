@@ -5,6 +5,25 @@ const Wireless = () => {
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
+    openHtmlPage(item);
+  };
+
+  const openHtmlPage = (item) => {
+    let url;
+    switch (item) {
+      case 'Wireless Settings':
+        url = `${process.env.PUBLIC_URL}/wireless-settings.html`;
+        break;
+      case 'Wireless Status':
+        url = `${process.env.PUBLIC_URL}/wireless-status.html`;
+        break;
+      case 'SSID Configuration':
+        url = `${process.env.PUBLIC_URL}/ssid-configuration.html`;
+        break;
+      default:
+        return;
+    }
+    window.open(url, '_blank');
   };
 
   const renderDetail = () => {
